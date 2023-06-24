@@ -1,24 +1,12 @@
-
-import Expenses from "./component/Expenses/Expenses";
-import NewExpense from "./component/NewExpense/NewExpense"
-import React, { useState } from "react"
-const DUMMY_EXPENSES = [
-  { id: 1, title: "Car Insurance", amount: 297.58, date: new Date(2021, 3, 8) }
-];
+import BudgetTracker from './component/BudgetTracker'
+import {Routes, Route} from 'react-router-dom'
 function App() {
-  
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
-  const addExpenseHandler = expense => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses]
-    })
-  }
-  return (
-    <div>
-     <NewExpense onAddExpense={addExpenseHandler}/>
-      <Expenses items={expenses}/>
-    </div>
-  );
-}
 
+
+    return (
+    <Routes>
+     <Route exact path='/budget' element={<BudgetTracker/>}/>
+    </Routes>
+    )
+}
 export default App;
