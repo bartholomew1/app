@@ -12,6 +12,7 @@ function BudgetTracker() {
   //     return [expense, ...prevExpenses]
   //   })
   // }
+  // get data from child component ^
   return (
     <div className="budget">
       <NewExpense /*onAddExpense={addExpenseHandler}*//>
