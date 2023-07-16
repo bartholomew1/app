@@ -1,0 +1,55 @@
+.form-add {
+    float:inline-end;
+    border: 1px solid black;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    margin: 5% 5% 5% 5%;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 40%;
+    box-shadow: 5px 5px 5px;
+}
+
+.form-add button {
+    float: right;
+    margin: 5%;
+    background-color: #ddd;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 5px;
+    width: 70px;
+    height: 35px;
+    color: rgb(97, 95, 95);
+}
+
+.name-box {
+   display: flex;
+   justify-content: left;
+   align-items: center;
+    
+}
+.email-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+     
+ }
+ .city-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+     
+ }
+ .country-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+     
+ }
+
+ .form-add input {
+
+    width: 50%;
+    height: 25%;
+ }

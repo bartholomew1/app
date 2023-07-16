@@ -1,7 +1,5 @@
-.container {
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
+.table-container {
+    margin: 2% 2% 5% 5%;
 }
 table {
     border-collapse: collapse;
@@ -25,4 +23,37 @@ table tr:nth-child(even) {
 
 table tr:hover {
     background-color: #ddd;
+}
+
+.action-buttons {
+    margin: 2% 2% 2% 2%;
+    float: right;
+    display: flex;
+}
+
+.table-container a {
+    text-decoration: none;
+    padding: 5%;
+    text-align: center;
+    color: white;
+}
+
+.table-container button {
+    margin: 1px;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 5px;
+    width: 70px;
+    height: 35px;
+}
+.button-details {
+    background-color: grey;
+}
+.button-add {
+    background-color: rgba(0, 128, 0, 0.601);
+}
+
+.button-delete {
+    background-color: rgba(255, 0, 0, 0.575);
+    color: white;
 }

@@ -12,5 +12,12 @@ html {
 
 body {
     margin: 0;
-    background-color: #4d4c4c;
+    background-color: #dedede84;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    align-items: center;
 }
