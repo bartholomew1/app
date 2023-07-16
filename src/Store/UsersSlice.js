@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import fetcher from '../Api/fetcher'
 
 export const fetchUsers = createAsyncThunk('table/fetchUsers', async () => {
-    const data = await fetcher('http://localhost:3001/users/')
+    const data = await fetcher('http://localhost:3001/users')
     return data
 })
 
@@ -13,8 +13,9 @@ const usersSlice = createSlice({
         error: false
     },
     reducers: {
-        ADD(state, action) {
-            return [...state, action.payload]
+        deleteUser(state, action) {
+            const id = action.payload
+            state.data = state.data.filter((item) => item.id !== id)
         }
     },
     extraReducers: (builder) => {
@@ -23,4 +24,5 @@ const usersSlice = createSlice({
         })
     }
 })
+export const usersActions = usersSlice.actions
 export default usersSlice

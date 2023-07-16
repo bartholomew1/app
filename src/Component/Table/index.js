@@ -2,19 +2,27 @@ import { Link } from 'react-router-dom'
 import './UserTable.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { fetchUsers, usersActions } from '../../Store/UsersSlice'
+import { useEffect } from 'react'
+
 const UsersTable = () => {
     const users = useSelector((state) => state.users.data)
     const dispatch = useDispatch()
-    const handleDelete = () => {}
+    const handleDelete = (id) => {
+       dispatch(usersActions.deleteUser(id))
+    }
 
     return (
         <>
             <div className="table-container">
                 <div className="action-buttons">
-                    <button className='button-add'>
+                    <button className="button-add">
                         <Link to={'/table/add'}>Add</Link>
                     </button>
-                    <button className='button-delete' onClick={() => handleDelete()}>
+                    <button
+                        className="button-delete"
+                        onClick={() => handleDelete()}
+                    >
                         Delete
                     </button>
                 </div>
@@ -32,19 +40,26 @@ const UsersTable = () => {
                     </thead>
                     <tbody>
                         {users.map((user) => (
-                            <tr key={user.id}>
+                            <tr key={user?.id}>
                                 <td>
                                     <input type="radio" />
                                 </td>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.city}</td>
-                                <td>{user.country}</td>
+                                <td>{user?.name}</td>
+                                <td>{user?.email}</td>
+                                <td>{user?.city}</td>
+                                <td>{user?.country}</td>
                                 <td>
-                                    <button className='button-details'>
+                                    <button className="button-details">
                                         <Link to={`/table/${user.id}`}>
                                             Details
                                         </Link>
+                                    </button>
+                                    <button
+                                        type='button'
+                                        className="button-delete"
+                                        onClick={() => handleDelete(user.id)}
+                                    >
+                                        Delete
                                     </button>
                                 </td>
                             </tr>

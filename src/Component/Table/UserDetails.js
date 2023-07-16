@@ -1,17 +1,18 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { connect } from 'react-redux'
+import { useEffect } from 'react'
 const UserDetails = (props) => {
     const { userId } = useParams()
-
+    const dispatch = useDispatch()
     console.log(props)
     console.log(userId)
 
     const user = useSelector((state) =>
         state.users.data.find((u) => u.id === Number(userId))
     )
-
+    
     return (
         <>
             <div className="details-container">
