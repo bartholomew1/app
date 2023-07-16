@@ -25,8 +25,8 @@ const AddUser = () => {
                 initialValues={initialValues}
                 /*validationSchema={validationSchema}*/
             >
-                <Form>
-                    <div>
+                <Form className='form-add'>
+                    <div className='name-box'>
                         <label htmlFor="name">Name</label>
                         <Field type="text" id="name" name="name" />
                         <ErrorMessage

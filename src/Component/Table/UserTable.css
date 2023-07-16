@@ -56,4 +56,5 @@ table tr:hover {
 .button-delete {
     background-color: rgba(255, 0, 0, 0.575);
     color: white;
+    cursor: pointer;
 }
