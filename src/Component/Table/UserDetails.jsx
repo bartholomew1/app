@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { connect } from 'react-redux'
-import { useEffect } from 'react'
+import { useState } from 'react'
 const UserDetails = (props) => {
     const { userId } = useParams()
+    const [isDisabled, setIsDisabled] = useState(true)
     const dispatch = useDispatch()
     console.log(props)
     console.log(userId)
@@ -12,6 +13,12 @@ const UserDetails = (props) => {
     const user = useSelector((state) =>
         state.users.data.find((u) => u.id === Number(userId))
     )
+    const editHandler = () => {
+        isDisabled === false ? setIsDisabled(true) : setIsDisabled(false)
+    }
+    const submitButton = () => {
+    
+    }
     
     return (
         <>
@@ -19,24 +26,46 @@ const UserDetails = (props) => {
                 <div className="details-card">
                     <span className="details-header">
                         <h2>User Details</h2>
-                        <button className="button-edit">Edit</button>
+                        <button
+                            className="button-edit"
+                            onClick={() => editHandler()}
+                        >
+                            Edit
+                        </button>
                     </span>
                     <span className="details-name">
-                        <label>Name: </label>
-                        <p>{user?.name}</p>
+                        <label htmlFor="name">Name: </label>
+                        <input
+                            name="name"
+                            value={user?.name}
+                            disabled={isDisabled}
+                        ></input>
                     </span>
                     <span className="details-email">
-                        <label>Email: </label>
-                        <p>{user?.email}</p>
+                        <label htmlFor="email">Email: </label>
+                        <input
+                            name="email"
+                            value={user?.email}
+                            disabled={isDisabled}
+                        ></input>
                     </span>
                     <span className="details-city">
-                        <label>City: </label>
-                        <p>{user?.city}</p>
+                        <label htmlFor="city">City: </label>
+                        <input
+                            name="city"
+                            value={user?.city}
+                            disabled={isDisabled}
+                        ></input>
                     </span>
                     <span className="details-country">
-                        <label>Country: </label>
-                        <p>{user?.country}</p>
+                        <label htmlFor="country">Country: </label>
+                        <input
+                            name="country"
+                            value={user?.country}
+                            disabled={isDisabled}
+                        ></input>
                     </span>
+                    {isDisabled || <button className='button-edit' >Submit</button> }
                 </div>
             </div>
         </>

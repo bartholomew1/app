@@ -3,13 +3,19 @@ import './UserTable.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { fetchUsers, usersActions } from '../../Store/UsersSlice'
-import { useEffect } from 'react'
+import { useState } from 'react'
 
 const UsersTable = () => {
+    const [ids, setIds] = useState([])
     const users = useSelector((state) => state.users.data)
     const dispatch = useDispatch()
     const handleDelete = (id) => {
        dispatch(usersActions.deleteUser(id))
+       setIds([])
+    }
+
+    const radioHandler = (id) => {
+        setIds([...ids, id])
     }
 
     return (
@@ -21,7 +27,7 @@ const UsersTable = () => {
                     </button>
                     <button
                         className="button-delete"
-                        onClick={() => handleDelete()}
+                        onClick={() => handleDelete(ids)}
                     >
                         Delete
                     </button>
@@ -42,7 +48,7 @@ const UsersTable = () => {
                         {users.map((user) => (
                             <tr key={user?.id}>
                                 <td>
-                                    <input type="radio" />
+                                    <input type="checkbox" onClick={() => radioHandler(user.id)} />
                                 </td>
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
@@ -53,13 +59,6 @@ const UsersTable = () => {
                                         <Link to={`/table/${user.id}`}>
                                             Details
                                         </Link>
-                                    </button>
-                                    <button
-                                        type='button'
-                                        className="button-delete"
-                                        onClick={() => handleDelete(user.id)}
-                                    >
-                                        Delete
                                     </button>
                                 </td>
                             </tr>

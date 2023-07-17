@@ -15,7 +15,9 @@ const usersSlice = createSlice({
     reducers: {
         deleteUser(state, action) {
             const id = action.payload
-            state.data = state.data.filter((item) => item.id !== id)
+            id.map(element => {
+            state.data = state.data.filter((item) => item.id !== element)
+            });
         }
     },
     extraReducers: (builder) => {
