@@ -1,6 +1,6 @@
 import './AddUser.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-//import * as Yup from 'yup'
+import * as Yup from 'yup'
 
 const AddUser = () => {
     const initialValues = {
@@ -10,20 +10,20 @@ const AddUser = () => {
         country: '',
     }
 
-    // const validationSchema = Yup.object({
-    //     name: Yup.string().required('Name is required.'),
-    //     email: Yup.string()
-    //         .email('Invalid email adress.')
-    //         .required('Email is required.'),
-    //     city: Yup.string().required('City is required.'),
-    //     country: Yup.string().required('Country is required.'),
-    // })
+    const validationSchema = Yup.object({
+        name: Yup.string().required('Name is required.'),
+        email: Yup.string()
+            .email('Invalid email adress.')
+            .required('Email is required.'),
+        city: Yup.string().required('City is required.'),
+        country: Yup.string().required('Country is required.')
+    })
 
     return (
         <>
             <Formik
                 initialValues={initialValues}
-                /*validationSchema={validationSchema}*/
+                validationSchema={validationSchema}
             >
                 <Form className='form-add'>
                     <div className='name-box'>

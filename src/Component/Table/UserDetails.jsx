@@ -2,24 +2,42 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { connect } from 'react-redux'
-import { useState } from 'react'
-const UserDetails = (props) => {
+import { useEffect, useState } from 'react'
+import { usersActions } from '../../Store/UsersSlice'
+const UserDetails = () => {
     const { userId } = useParams()
     const [isDisabled, setIsDisabled] = useState(true)
+    const [formData, setFormData] = useState({
+        id: '',
+        name: '',
+        email: '',
+        city: '',
+        country: '',
+    })
     const dispatch = useDispatch()
-    console.log(props)
-    console.log(userId)
-
     const user = useSelector((state) =>
         state.users.data.find((u) => u.id === Number(userId))
     )
+
     const editHandler = () => {
-        isDisabled === false ? setIsDisabled(true) : setIsDisabled(false)
+        isDisabled === false ? setIsDisabled(true)  : setIsDisabled(false) 
+        setFormData(user)   
     }
-    const submitButton = () => {
-    
+    const formHandler = (e) => {
+        const { name, value } = e.target
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }))
     }
-    
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        console.log(formData)
+        dispatch(usersActions.updateUser(formData))
+        setIsDisabled(true)
+    }
+
     return (
         <>
             <div className="details-container">
@@ -28,7 +46,7 @@ const UserDetails = (props) => {
                         <h2>User Details</h2>
                         <button
                             className="button-edit"
-                            onClick={() => editHandler()}
+                            onClick={editHandler}
                         >
                             Edit
                         </button>
@@ -37,35 +55,43 @@ const UserDetails = (props) => {
                         <label htmlFor="name">Name: </label>
                         <input
                             name="name"
-                            value={user?.name}
+                            defaultValue={user?.name}
                             disabled={isDisabled}
+                            onChange={formHandler}
                         ></input>
                     </span>
                     <span className="details-email">
                         <label htmlFor="email">Email: </label>
                         <input
                             name="email"
-                            value={user?.email}
+                            defaultValue={user?.email}
                             disabled={isDisabled}
+                            onChange={formHandler}
                         ></input>
                     </span>
                     <span className="details-city">
                         <label htmlFor="city">City: </label>
                         <input
                             name="city"
-                            value={user?.city}
+                            defaultValue={user?.city}
                             disabled={isDisabled}
+                            onChange={formHandler}
                         ></input>
                     </span>
                     <span className="details-country">
                         <label htmlFor="country">Country: </label>
                         <input
                             name="country"
-                            value={user?.country}
+                            defaultValue={user?.country}
                             disabled={isDisabled}
+                            onChange={formHandler}
                         ></input>
                     </span>
-                    {isDisabled || <button className='button-edit' >Submit</button> }
+                    {isDisabled || (
+                        <button className="button-edit" onClick={submitHandler}>
+                            Submit
+                        </button>
+                    )}
                 </div>
             </div>
         </>
@@ -79,4 +105,8 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(UserDetails)
+const mapDispatchToProps = {
+    usersActions,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetails)
