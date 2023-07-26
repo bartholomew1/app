@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import './UserDetails.css'
 import { connect } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { usersActions } from '../../Store/UsersSlice'
 const UserDetails = () => {
     const { userId } = useParams()
@@ -109,4 +109,4 @@ const mapDispatchToProps = {
     usersActions,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDetails)
+export default connect(mapStateToProps, mapDispatchToProps)(memo(UserDetails))
