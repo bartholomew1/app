@@ -6,13 +6,11 @@ export const fetchUsers = createAsyncThunk('table/fetchUsers', async () => {
     return data
 })
 
-
-
 const usersSlice = createSlice({
     name: 'users',
     initialState: {
         data: [],
-        error: false
+        error: false,
     },
     reducers: {
         addItem(state, action) {
@@ -20,21 +18,21 @@ const usersSlice = createSlice({
         },
         deleteUser(state, action) {
             const id = action.payload
-            id.map(element => {
-            state.data = state.data.filter((item) => item.id !== element)
-            });
+            id.map((element) => {
+                state.data = state.data.filter((item) => item.id !== element)
+            })
         },
         updateUser(state, action) {
             const { id } = action.payload
             const existingUser = state.data.find((user) => user.id === id)
             state.data.splice(existingUser, 1, action.payload)
-        }
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchUsers.fulfilled, (state, action) => {
-             state.data = action.payload
+            state.data = action.payload
         })
-    }
+    },
 })
 export const usersActions = usersSlice.actions
 export default usersSlice

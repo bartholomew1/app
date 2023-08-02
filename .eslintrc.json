@@ -13,6 +13,6 @@
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "indent": ["error", 4],
-        "react/react-in-jsx-scope": "off",
+        "react/react-in-jsx-scope": "off"
     }
 }

@@ -12,9 +12,15 @@ const UsersTable = () => {
     const [selectedSearchOption, setSelectedSearchOption] = useState('name')
     const [filteredUsers, setFilteredUsers] = useState(users)
     const dispatch = useDispatch()
-
+    // TODO
     const handleDelete = (id) => {
-        dispatch(usersActions.deleteUser(id))
+        //dispatch(usersActions.deleteUser(id))
+        console.log(ids)
+        const removeItems = ids.map((id) => {
+            filteredUsers.filter((item) => item.id !== id)
+        })
+        console.log(removeItems)
+        setFilteredUsers()
         setIds([])
         document.getElementById('select-all').removeAttribute('checked')
     }
@@ -40,7 +46,6 @@ const UsersTable = () => {
     }
 
     const handleOptionChange = (event) => {
-        console.log(event)
         setSelectedSearchOption(event.target.value)
     }
 
@@ -54,7 +59,7 @@ const UsersTable = () => {
             } else {
                 return user[selectedSearchOption]
                     .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
+                    .includes(searchTerm.toLocaleLowerCase())
             }
         })
         setFilteredUsers(filterUsers)
@@ -67,10 +72,7 @@ const UsersTable = () => {
                     <button className="button-add">
                         <Link to={'/table/add'}>Add</Link>
                     </button>
-                    <button
-                        className="button-delete"
-                        onClick={() => handleDelete(ids)}
-                    >
+                    <button className="button-delete" onClick={handleDelete}>
                         Delete
                     </button>
                     <div className="search-box">

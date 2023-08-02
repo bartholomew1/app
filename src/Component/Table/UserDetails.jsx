@@ -20,14 +20,14 @@ const UserDetails = () => {
     )
 
     const editHandler = () => {
-        isDisabled === false ? setIsDisabled(true)  : setIsDisabled(false) 
-        setFormData(user)   
+        isDisabled === false ? setIsDisabled(true) : setIsDisabled(false)
+        setFormData(user)
     }
     const formHandler = (e) => {
         const { name, value } = e.target
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value,
+            [name]: value
         }))
     }
 
@@ -44,10 +44,7 @@ const UserDetails = () => {
                 <div className="details-card">
                     <span className="details-header">
                         <h2>User Details</h2>
-                        <button
-                            className="button-edit"
-                            onClick={editHandler}
-                        >
+                        <button className="button-edit" onClick={editHandler}>
                             Edit
                         </button>
                     </span>
